@@ -1,6 +1,14 @@
 import time
 
-from constants import *
+from constants import (
+    EPOCH_MS_DEFAULT,
+    NODE_ID_DEFAULT,
+    NODE_ID_MAX,
+    NODE_ID_SHIFT,
+    SEQUENCE_ID_MAX,
+    TIMESTAMP_MS_MAX,
+    TIMESTAMP_SHIFT,
+)
 
 def read_current_millis(epoch_ms: int) -> int:
     return time.time_ns() // 1_000_000 - epoch_ms
@@ -16,7 +24,9 @@ def decode_sequence_id(snowflake_id: int) -> int:
     return snowflake_id & SEQUENCE_ID_MAX
 
 def generate_snowflake_id(
-    sequence_id: int, node_id: int = NODE_ID_DEFAULT, epoch_ms: int = EPOCH_MS_DEFAULT
+    sequence_id: int,
+    node_id: int = NODE_ID_DEFAULT,
+    epoch_ms: int = EPOCH_MS_DEFAULT,
 ) -> int | None:
 
     if not (0 <= node_id <= NODE_ID_MAX):
@@ -32,7 +42,8 @@ def generate_snowflake_id(
         print(f"timestamp overflows: {elapsed_ms} > {TIMESTAMP_MS_MAX}")
         return None
 
-    snowflake_id = (
-        (elapsed_ms << TIMESTAMP_SHIFT) | (node_id << NODE_ID_SHIFT) | (sequence_id)
+    return (
+        (elapsed_ms << TIMESTAMP_SHIFT)
+        | (node_id << NODE_ID_SHIFT)
+        | sequence_id
     )
-    return snowflake_id
