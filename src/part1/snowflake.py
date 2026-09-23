@@ -9,7 +9,7 @@ The public entry point is :func:`generate_snowflake_id`. It is stateless: the
 caller passes the sequence counter on every call and is responsible for
 advancing it within a millisecond and resetting it when the clock ticks over.
 
-Each packed field can be read back on its own with :func:`decode_timestamp_ms`,
+Each packed field can be read back on its own with :func:`decode_timestamp_ms`,hhjhj
 :func:`decode_node_id` and :func:`decode_sequence_id`.
 """
 
