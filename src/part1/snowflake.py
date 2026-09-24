@@ -46,4 +46,5 @@ def generate_snowflake_id(
         print(f"timestamp overflows: {elapsed_ms} > {TIMESTAMP_MS_MAX}")
         return None
 
-    return (elapsed_ms << TIMESTAMP_SHIFT) | (node_id << NODE_ID_SHIFT) | sequence_id
+    return (
+        elapsed_ms << TIMESTAMP_SHIFT) | (node_id << NODE_ID_SHIFT) | sequence_id
