@@ -1,5 +1,6 @@
 from typing import Final
 
+
 EPOCH_MS_DEFAULT: Final[int] = 1288834974657
 NODE_ID_DEFAULT: Final[int] = 0
 TIMESTAMP_BITS: Final[int] = 41
