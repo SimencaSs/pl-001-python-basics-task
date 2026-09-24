@@ -35,7 +35,6 @@ def generate_snowflake_id(
     
 
 ) -> int | None:
-
     if not (0 <= node_id <= NODE_ID_MAX):
         print(f"node_id must be in [0, {NODE_ID_MAX}], got {node_id}")
         return None
@@ -49,6 +48,4 @@ def generate_snowflake_id(
         print(f"timestamp overflows: {elapsed_ms} > {TIMESTAMP_MS_MAX}")
         return None
 
-    return (
-        (elapsed_ms << TIMESTAMP_SHIFT) | (node_id << NODE_ID_SHIFT) | sequence_id
-    )
+    return (elapsed_ms << TIMESTAMP_SHIFT) | (node_id << NODE_ID_SHIFT) | sequence_id
