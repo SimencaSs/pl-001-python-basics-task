@@ -1,6 +1,6 @@
 import time
 
-from constants import (
+from part1.constants import (
     EPOCH_MS_DEFAULT,
     NODE_ID_DEFAULT,
     NODE_ID_MAX,
