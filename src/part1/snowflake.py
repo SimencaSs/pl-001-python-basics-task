@@ -10,23 +10,30 @@ from constants import (
     TIMESTAMP_SHIFT,
 )
 
+
 def read_current_millis(epoch_ms: int) -> int:
     return time.time_ns() // 1000000 - epoch_ms
+
 
 def decode_timestamp_ms(snowflake_id: int, epoch_ms: int = EPOCH_MS_DEFAULT) -> int:
     stored_ms = snowflake_id >> TIMESTAMP_SHIFT
     return stored_ms + epoch_ms
 
+
 def decode_node_id(snowflake_id: int) -> int:
     return (snowflake_id >> NODE_ID_SHIFT) & NODE_ID_MAX
 
+
 def decode_sequence_id(snowflake_id: int) -> int:
     return snowflake_id & SEQUENCE_ID_MAX
+
 
 def generate_snowflake_id(
     sequence_id: int,
     node_id: int = NODE_ID_DEFAULT,
     epoch_ms: int = EPOCH_MS_DEFAULT,
+    
+
 ) -> int | None:
 
     if not (0 <= node_id <= NODE_ID_MAX):
