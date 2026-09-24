@@ -11,7 +11,7 @@ from constants import (
 )
 
 def read_current_millis(epoch_ms: int) -> int:
-    return time.time_ns() // 1_000_000 - epoch_ms
+    return time.time_ns() // 1000000 - epoch_ms
 
 def decode_timestamp_ms(snowflake_id: int, epoch_ms: int = EPOCH_MS_DEFAULT) -> int:
     stored_ms = snowflake_id >> TIMESTAMP_SHIFT
@@ -43,7 +43,5 @@ def generate_snowflake_id(
         return None
 
     return (
-        (elapsed_ms << TIMESTAMP_SHIFT)
-        | (node_id << NODE_ID_SHIFT)
-        | sequence_id
+        (elapsed_ms << TIMESTAMP_SHIFT) | (node_id << NODE_ID_SHIFT) | sequence_id
     )
