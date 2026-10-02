@@ -39,3 +39,6 @@ strict = true
 namespace_packages = true
 explicit_package_bases = true
 mypy_path = "src"
+
+[tool.ruff.lint]
+ignore = ["PYI064"]
