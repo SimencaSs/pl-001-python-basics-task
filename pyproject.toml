@@ -38,4 +38,4 @@ split-on-trailing-comma = true
 strict = true
 namespace_packages = true
 explicit_package_bases = true
-mypy_path = "src/part2"
+mypy_path = "src"

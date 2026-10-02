@@ -9,10 +9,10 @@ Like the CRUD layer, the failure path never raises -- the operation prints
 an explanatory message to stdout and returns ``None``.
 """
 
-from typing import Final
+from typing import Final, Literal
 
-from src.part2.crud import read_product
-from src.part2.storage import (
+from part2.crud import read_product
+from part2.storage import (
     NAME_INDEX,
     PRICE_INDEX,
     PRODUCT_ID_INDEX,
@@ -23,8 +23,8 @@ from src.part2.storage import (
 
 type CartLine = tuple[int, int]
 
-LINE_PRODUCT_ID_INDEX: Final[int] = 0
-LINE_QUANTITY_INDEX: Final[int] = 1
+LINE_PRODUCT_ID_INDEX: Final[Literal[0]] = 0
+LINE_QUANTITY_INDEX: Final[Literal[1]] = 1
 
 
 def find_cart_line(cart: list[CartLine], product_id: int) -> CartLine | None:

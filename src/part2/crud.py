@@ -14,13 +14,13 @@ is already taken.
 
 from decimal import Decimal
 
-from storage import (
+from part2.storage import (
     NAME_INDEX,
     PRODUCT_ID_INDEX,
     PRODUCT_ID_MIN,
     Product,
 )
-from utils import normalize_price
+from part2.utils import normalize_price
 
 
 def generate_product_id(storage: list[Product]) -> int:
