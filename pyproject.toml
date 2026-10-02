@@ -39,4 +39,4 @@ strict = true
 mypy_path = "src"
 namespace_packages = true
 explicit_package_bases = true
-
+mypy_path = "src/part2"

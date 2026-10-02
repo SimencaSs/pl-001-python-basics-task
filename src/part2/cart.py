@@ -11,8 +11,8 @@ an explanatory message to stdout and returns ``None``.
 
 from typing import Final
 
-from crud import read_product
-from storage import (
+from src.part2.crud import read_product
+from src.part2.storage import (
     NAME_INDEX,
     PRICE_INDEX,
     PRODUCT_ID_INDEX,
@@ -23,8 +23,8 @@ from storage import (
 
 type CartLine = tuple[int, int]
 
-LINE_PRODUCT_ID_INDEX: Final = 0
-LINE_QUANTITY_INDEX: Final = 1
+LINE_PRODUCT_ID_INDEX: Final[int] = 0
+LINE_QUANTITY_INDEX: Final[int] = 1
 
 
 def find_cart_line(cart: list[CartLine], product_id: int) -> CartLine | None:
