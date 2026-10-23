@@ -24,16 +24,6 @@ from .utils import normalize_price
 
 
 def generate_product_id(storage: list[Product]) -> int:
-    """Choose the identifier for the next product added to ``storage``.
-
-    Args:
-        storage: The product store to inspect.
-
-    Returns:
-        One past the greatest identifier currently held in ``storage``, or
-        :data:`~src.part2.storage.PRODUCT_ID_MIN` when ``storage`` is
-        empty.
-    """
     if not storage:
         return PRODUCT_ID_MIN
 
@@ -47,21 +37,6 @@ def generate_product_id(storage: list[Product]) -> int:
 def create_product(
     storage: list[Product], fields: tuple[str, Decimal, int]
 ) -> int | None:
-    """Append a new product to ``storage`` and return its new identifier.
-
-    Args:
-        storage: The product store to append to; modified in place on
-            success.
-        fields: A ``(name, price, quantity)`` tuple describing the product.
-            ``price`` is a :class:`~decimal.Decimal` amount and is rounded
-            to the stored money precision before it is saved.
-
-    Returns:
-        The identifier generated for the new product, or ``None`` when a
-        product with the same name already exists. In the ``None`` case
-        ``storage`` is left unchanged and a message naming the clashing
-        name is printed.
-    """
     name, price, quantity = fields
     for product in storage:
         if product[NAME_INDEX] == name:
@@ -75,16 +50,6 @@ def create_product(
 
 
 def read_product(storage: list[Product], product_id: int) -> Product | None:
-    """Return the product stored under ``product_id``.
-
-    Args:
-        storage: The product store to search.
-
-    Returns:
-        The matching ``(product_id, name, price, quantity)`` record, or
-        ``None`` when no product carries that identifier (a message is
-        printed in that case).
-    """
     for product in storage:
         if product[PRODUCT_ID_INDEX] == product_id:
             return product
@@ -97,24 +62,6 @@ def update_product(
     product_id: int,
     fields: tuple[str, Decimal, int],
 ) -> Product | None:
-    """Overwrite the fields of the product stored under ``product_id``.
-
-    The identifier itself is preserved; only ``name``, ``price`` and
-    ``quantity`` are replaced.
-
-    Args:
-        storage: The product store to modify; the matching record is
-            replaced in place on success.
-        product_id: The identifier of the product to change.
-        fields: A ``(name, price, quantity)`` tuple with the new values.
-            ``price`` is a :class:`~decimal.Decimal` amount and is rounded
-            to the stored money precision before it is saved.
-
-    Returns:
-        The updated ``(product_id, name, price, quantity)`` record, or
-        ``None`` when no product carries that identifier (``storage`` is
-        left unchanged and a message is printed).
-    """
     name, price, quantity = fields
     normalized_price = normalize_price(price)
     for i in range(len(storage)):
@@ -127,18 +74,6 @@ def update_product(
 
 
 def delete_product(storage: list[Product], product_id: int) -> int | None:
-    """Remove the product stored under ``product_id`` from ``storage``.
-
-    Args:
-        storage: The product store to remove from; modified in place on
-            success.
-        product_id: The identifier of the product to remove.
-
-    Returns:
-        ``product_id`` when a product was removed, or ``None`` when no
-        product carried that identifier (``storage`` is left unchanged and
-        a message is printed).
-    """
     for i in range(len(storage)):
         if storage[i][PRODUCT_ID_INDEX] == product_id:
             del storage[i]
